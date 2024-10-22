@@ -1,0 +1,27 @@
+<div>
+  <h1>Serial Communication</h1>
+  <div>
+    <label for="port-select">Select a COM Port:</label>
+    <select id="port-select" [(ngModel)]="selectedPort">
+      <option *ngFor="let port of ports" [value]="port.path">
+        {{ port.path }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="inputData">Input Data:</label>
+    <input id="inputData" [(ngModel)]="inputData" placeholder="Type data to send" />
+    <button (click)="sendData()">Send Data</button>
+  </div>
+
+  <h2>Received Data:</h2>
+  <div>{{ receivedData }}</div>
+
+  <button (click)="toggleConnection()">
+    {{ isConnected ? 'Disconnect' : 'Connect' }}
+  </button>
+  <div *ngIf="errorMessage" style="color: red;">
+    Error: {{ errorMessage }}
+  </div>
+</div>
